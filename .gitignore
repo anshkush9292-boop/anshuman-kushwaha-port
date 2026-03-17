@@ -1,0 +1,38 @@
+# Ignore all script files except main.js
+*.py
+*.js
+!main.js
+*.ps1
+
+# Ignore all backup files
+*.bak
+*-bak.html
+index_backup.html
+
+# Ignore project metadata and docs
+PROJECT_RULES.md
+anshuman-portfolio-final-prd.md
+GSD-STYLE.md
+model_capabilities.yaml
+Simple_Hipster_CV.pdf
+resource_manager.py
+cleanup.ps1
+
+# Ignore PDF/DOCX source files
+*.pdf
+*.docx
+
+# Ignore large image files mentioned in list_dir
+*.jpg
+*.png
+!_assets/
+
+# Ignore internal directories
+.agent/
+.gemini/
+.gsd/
+.git/
+adapters/
+docs/
+scripts/
+_assets/
