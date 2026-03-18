@@ -39,8 +39,8 @@ button{font-family:inherit;cursor:pointer}
 /* ============================================================
    CURSOR
 ============================================================ */
-#cur{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--or);pointer-events:none;z-index:9999;will-change:transform;contain:strict}
-#cur2{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--or);pointer-events:none;z-index:9998;opacity:.4;will-change:transform;contain:strict;transition:width .25s,height .25s,opacity .25s}
+#cur{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;z-index:9999;will-change:transform;contain:strict}
+#cur2{position:fixed;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--or);pointer-events:none;z-index:9998;opacity:.4;will-change:transform;contain:strict;transition:width .25s,height .25s,opacity .25s}
 #cur2.big{width:60px;height:60px;opacity:.14}
 body{cursor:none}
 
@@ -694,6 +694,29 @@ footer{background:var(--dk);border-top:1px solid rgba(255,255,255,.05);padding:2
   color: var(--tx);
   opacity: 0.8;
   font-weight: 500;
+  margin-bottom: 20px;
+}
+.afc-trust-signals{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.afc-signal{
+  font-size: 10px;
+  color: var(--mt);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0,0,0,0.03);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.afc-signal::before{
+  content: '✦';
+  color: var(--or);
+  font-size: 12px;
 }
 .afc-cta{
   background: var(--dk);
@@ -830,6 +853,7 @@ footer{background:var(--dk);border-top:1px solid rgba(255,255,255,.05);padding:2
   <div class="nav-logo"><em>A</em>nshuman K.</div>
   <a class="nav-center" href="mailto:anshkush9292@gmail.com">anshkush9292@gmail.com</a>
   <div class="nav-links">
+    <a href="https://anshkush9292-boop.github.io/antigravity-seo/antigravity.html" target="_blank" style="color:var(--or);font-weight:700">SEO Exp</a>
     <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#skills">Skills</a>
@@ -1280,6 +1304,11 @@ footer{background:var(--dk);border-top:1px solid rgba(255,255,255,.05);padding:2
             <span class="afc-badge">Live Proof</span>
             <h3 class="afc-title">AEO SEO Experiment</h3>
             <p class="afc-sub">Ranked using AI + Schema</p>
+            <div class="afc-trust-signals">
+              <span class="afc-signal">Live SEO Experiment</span>
+              <span class="afc-signal">Zero Backlinks Strategy</span>
+              <span class="afc-signal">Indexed on Google</span>
+            </div>
           </div>
           <div class="afc-cta">
             View Case Study <span>→</span>
@@ -1405,7 +1434,7 @@ document.addEventListener('mousemove', e => {
 (function lp(){
   if(!isTouch && mouseMoved) {
     cur.style.transform=`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
-    cx+=(mx-cx)*.1; cy+=(my-cy)*.1;
+    cx+=(mx-cx)*.16; cy+=(my-cy)*.16;
     cur2.style.transform=`translate(calc(${cx}px - 50%),calc(${cy}px - 50%))`;
     mouseMoved = false;
   }
