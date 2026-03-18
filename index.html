@@ -627,6 +627,116 @@ footer{background:var(--dk);border-top:1px solid rgba(255,255,255,.05);padding:2
 .foot-dot{color:var(--or)}
 
 /* ============================================================
+   FEATURED AEO CARD
+   ============================================================ */
+.aeo-featured-wrap{
+  margin-bottom: 60px;
+  perspective: 1000px;
+  animation: aeoFloat 6s ease-in-out infinite;
+}
+@keyframes aeoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.aeo-featured-card{
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+.aeo-featured-card:hover{
+  transform: scale(1.02);
+  border-color: rgba(255,107,44,0.4);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.18), 0 0 40px rgba(255,107,44,0.15);
+}
+.aeo-featured-card:active{
+  transform: scale(0.98);
+}
+.afc-content{ flex: 1; }
+.afc-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16,185,129,0.1);
+  color: #10B981;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(16,185,129,0.2);
+}
+.afc-title{
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 3.5vw, 40px);
+  color: var(--dk);
+  letter-spacing: -1.5px;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.afc-sub{
+  font-size: clamp(14px, 1.2vw, 18px);
+  color: var(--tx);
+  opacity: 0.8;
+  font-weight: 500;
+}
+.afc-cta{
+  background: var(--dk);
+  color: var(--wh);
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+.aeo-featured-card:hover .afc-cta{
+  background: var(--or);
+  transform: translateX(5px);
+}
+.afc-glow{
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,107,44,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media(max-width: 768px){
+  .aeo-featured-card{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 24px;
+  }
+  .afc-cta{ width: 100%; justify-content: center; }
+  .aeo-featured-wrap{ animation: none; margin-bottom: 40px; }
+}
+
+/* ============================================================
    RESPONSIVE
 ============================================================ */
 @media(max-width:1024px){
@@ -1161,6 +1271,23 @@ footer{background:var(--dk);border-top:1px solid rgba(255,255,255,.05);padding:2
 <!-- ============================================================ AEO -->
 <section id="aeo" style="background:var(--bg)">
   <div class="aeo-inner">
+    <!-- Featured AEO Case Study Card -->
+    <div class="aeo-featured-wrap reveal-clip">
+      <div class="clip-inner">
+        <a href="https://anshkush9292-boop.github.io/antigravity-seo/antigravity.html" target="_blank" class="aeo-featured-card" data-tilt>
+          <div class="afc-glow"></div>
+          <div class="afc-content">
+            <span class="afc-badge">Live Proof</span>
+            <h3 class="afc-title">AEO SEO Experiment</h3>
+            <p class="afc-sub">Ranked using AI + Schema</p>
+          </div>
+          <div class="afc-cta">
+            View Case Study <span>→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <div class="aeo-grid">
       <div class="reveal-left">
         <div class="sec-label">Live Proof</div>
@@ -1442,7 +1569,8 @@ if(!isTouch) {
    3D TILT ENGINE — rAF-throttled, will-change only while active
 ============================================================ */
 function initTilt(el){
-  const strength = el.classList.contains('proj-card') ? 5 :
+  const strength = el.classList.contains('aeo-featured-card') ? 4 :
+                   el.classList.contains('proj-card') ? 5 :
                    el.classList.contains('stats-3d-card') ? 12 : 7;
   let rafId=null, rect=null;
 
