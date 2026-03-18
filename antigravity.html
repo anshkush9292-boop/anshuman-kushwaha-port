@@ -74,17 +74,18 @@
 
     <style>
         :root {
-            --or: #FF6B2C;
-            --dk: #0a0a0a;
+            --or: #ff6b2c;
+            --bg: #0a0a0a;
+            --dk: #141414;
             --wh: #ffffff;
-            --bg: #0f0f0f;
-            --bd: #222222;
-            --tx: #999999;
+            --tx: #a0a0a0;
+            --bd: rgba(255, 255, 255, 0.1);
             --gr: #10B981;
             --gl: rgba(255, 255, 255, 0.03);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 10px; }
 
@@ -235,27 +236,48 @@
             font-size: 13px; font-weight: 600; color: var(--gr); margin-top: 40px;
         }
 
-        /* CTA */
+        /* CTA Section */
         .cta-box {
-            background: linear-gradient(to bottom right, #111, #000); padding: 80px 40px;
-            border-radius: 40px; text-align: center; border: 1px solid var(--bd);
-            margin-top: 100px;
+            background: linear-gradient(135deg, var(--dk) 0%, #1a1a1a 100%);
+            padding: 80px 40px; border-radius: 32px; text-align: center;
+            border: 1px solid var(--bd); margin: 80px 0;
         }
+        .cta-box h2 { color: var(--wh); }
         .cta-btn {
-            display: inline-block; background: var(--or); color: var(--wh);
-            padding: 20px 48px; border-radius: 12px; font-family: 'Sora', sans-serif;
-            font-weight: 700; font-size: 18px; transition: 0.3s; letter-spacing: -0.02em;
+            display: inline-block; padding: 18px 48px; background: var(--or);
+            color: var(--wh); text-decoration: none; border-radius: 12px;
+            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255, 107, 44, 0.2); }
+        .cta-btn:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 40px rgba(255, 107, 44, 0.3);
+        }
 
-        footer { padding: 80px 0 40px; border-top: 1px solid var(--bd); text-align: center; color: #444; font-size: 12px; letter-spacing: 1px; }
+        /* Back to Top */
+        #back-to-top {
+            position: fixed; bottom: 40px; right: 40px;
+            width: 50px; height: 50px; background: var(--dk);
+            border: 1px solid var(--bd); color: var(--or);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1000;
+        }
+        #back-to-top.visible { opacity: 1; visibility: visible; }
+        #back-to-top:hover { background: var(--or); color: var(--wh); border-color: var(--or); }
 
+        /* Footer */
+        footer { padding: 60px 0; text-align: center; font-size: 13px; color: #555; border-top: 1px solid var(--bd); margin-top: 100px; }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .comp-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 52px; }
-            .hero { padding: 140px 0 60px; }
-            nav { padding: 15px 20px; }
             .container { padding: 0 24px; }
+            section { padding: 80px 0 40px; }
+            h1 { font-size: 40px; }
+            .hero { padding: 160px 0 80px; }
+            .hero-ctas { gap: 12px; }
+            .btn { width: 100%; text-align: center; padding: 16px 20px; }
+            .metric-grid, .comp-grid { grid-template-columns: 1fr; gap: 20px; }
+            .proof-line { padding-left: 16px; font-size: 17px; }
         }
     </style>
 </head>
@@ -370,14 +392,19 @@
 
         <section class="cta-box reveal">
             <h3 class="reveal delay-1">Next Gen Marketing</h3>
-            <h2 class="reveal delay-2" style="color: #fff;">Scale Your Growth Engine.</h2>
+            <h2 class="reveal delay-2">Scale Your Growth Engine.</h2>
             <p class="paragraph reveal delay-3" style="margin: 0 auto 32px; font-size: 16px;">Ready to dominate AI search results with an AEO-first content strategy?</p>
             <a href="mailto:anshkush9292@gmail.com" class="cta-btn reveal delay-3">Scale Your Brand ↗</a>
         </section>
 
         <footer>
+            <div style="margin-bottom: 20px;">
+                <a href="index.html" style="color: var(--or); text-decoration: none; font-weight: 700; font-family: 'Syne', sans-serif; font-size: 15px;">AK. Portfolio</a>
+            </div>
             © 2026 Anshuman Kushwaha · AI-Driven Growth · Gurgaon, India
         </footer>
+
+        <div id="back-to-top" title="Back to Top">↑</div>
 
     </div>
 
@@ -407,6 +434,19 @@
                 const item = trigger.parentElement;
                 item.classList.toggle('open');
             });
+        });
+
+        // Back to Top
+        const btt = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                btt.classList.add('visible');
+            } else {
+                btt.classList.remove('visible');
+            }
+        });
+        btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
